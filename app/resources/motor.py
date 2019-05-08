@@ -6,7 +6,6 @@ from app.utils.mDev import mDEV
 
 class MotorResource(object):
 
-    cors_enabled = False
     i2c_interface = mDEV()
 
     def on_put(self, req, resp):

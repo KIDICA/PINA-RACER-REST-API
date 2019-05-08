@@ -9,6 +9,7 @@ root = RootResources()
 images = MotorResource()
 
 api = application = falcon.API(middleware=[cors.middleware])
+public_cors = CORS(allow_all_origins=True)
 
 api.add_route('/', root)
 api.add_route('/motor', images)
