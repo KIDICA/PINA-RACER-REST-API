@@ -1,5 +1,6 @@
 import json
 import falcon
+from falcon_cors import CORS
 
 from app.utils.mDev import mDEV
 
@@ -7,6 +8,7 @@ from app.utils.mDev import mDEV
 class MotorResource(object):
 
     i2c_interface = mDEV()
+    cors = CORS(allow_all_origins=True)
 
     def on_put(self, req, resp):
 
