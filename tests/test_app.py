@@ -10,6 +10,6 @@ def client():
 
 def test_list_images(client):
 
-    response = client.simulate_get('/images')
+    response = client.simulate_get('/')
 
     assert response.status == falcon.HTTP_OK
