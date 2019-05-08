@@ -23,4 +23,5 @@ Start application
 
 ## Manual test
 
-* `curl http://127.0.0.1:8038/images`
+* `curl http://127.0.0.1:8038/`
+* `curl -XPUT -d '{"speed":1000, "direction": 1}' http://127.0.0.1:8038/motor  `
