@@ -11,7 +11,9 @@ falcon-cors = "==1.1.7"
 gunicorn = "==19.9.0"
 pytest = "==4.4.1"
 smbus2 = "==0.2.3"
-enum = "==0.4.7"
+tinydb = "==3.13.0"
+jsonschema = "==3.0.1"
+stringcase = "==1.2.0"
 
 [requires]
-python_version = "2.7"
+python_version = "3.6"
