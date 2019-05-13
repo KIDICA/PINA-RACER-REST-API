@@ -24,6 +24,8 @@ class RequestValidator(object):
             raise HttpError(400, "JSON was incorrect")
 
     def process_resource(self, req, resp, resource, params):
+        if req.method == "OPTIONS":
+            return
         name = [resource.__class__.__name__, stringcase.lowercase(getattr(req, "method", None)), "request schema"]
         schema = getattr(JsonSchemas, stringcase.snakecase(" ".join(name)), None)
         payload = req.context["doc"]
@@ -37,7 +39,7 @@ class RequestValidator(object):
                 raise HttpError(500, "Unable to check the request because the JSON scheme is invalid.")
 
     def process_response(self, req, resp, resource, req_succeeded):
-        if "result" not in req.context:
+        if "doc" not in req.context:
             return
 
         resp.body = json.dumps(req.context["result"])
