@@ -10,7 +10,7 @@ from app.models.http_error import HttpError
 class RequestValidator(object):
 
     def process_request(self, req, resp):
-        if req.content_length in (None, 0):
+        if (req.content_length in (None, 0)) or (req.method == "OPTIONS"):
             return
 
         body = req.stream.read()
