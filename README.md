@@ -1,10 +1,10 @@
-# pia-racer-rest-api
+# PINA RACER REST API
 
-Create a REST API using Falcon Framework.
+Small REST API to control the Smart Car Shield for RPi
 
 ## Requirements
 
-* `Python = 3.6`
+* `Python = 3.5`
 
 ## Install
 

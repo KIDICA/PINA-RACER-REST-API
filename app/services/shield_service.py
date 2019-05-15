@@ -32,18 +32,18 @@ class ShieldService:
         sonic_echo_time = self.__read_reg(self.__CMD_SONIC)
         return sonic_echo_time * 17.0 / 1000.0
 
-    def __set_shield_i2c_address(self, addr):  # addr: 7bit I2C Device Address
-        if (addr < 0x03) or (addr > 0x77):
-            return
-        else:
-            self.__write_reg(0xaa, (0xbb << 8) | (addr << 1))
-
     def set_motor_speed(self, speed, direction):
         self.__write_reg(self.__CMD_DIR1, direction)
         self.__write_reg(self.__CMD_DIR2, direction)
 
         self.__write_reg(self.__CMD_PWM1, speed)
         self.__write_reg(self.__CMD_PWM2, speed)
+
+    def __set_shield_i2c_address(self, addr):  # addr: 7bit I2C Device Address
+        if (addr < 0x03) or (addr > 0x77):
+            return
+        else:
+            self.__write_reg(0xaa, (0xbb << 8) | (addr << 1))
 
     def __write_reg(self, cmd, value):
         try:

@@ -12,6 +12,7 @@ class RequestValidator(object):
     def process_request(self, req, resp):
         if req.content_length in (None, 0):
             resp.complete = True
+            return
 
         body = req.stream.read()
         if not body:
