@@ -1,15 +1,10 @@
 import falcon
-from falcon_cors import CORS
 
-from app.middleware.request_validator import RequestValidator
+from app.middleware import RequestValidator, CorsConfigurator
 from app.models.http_error import error_handler
 from app.resources.motor_resource import MotorResource
 from app.resources.root import RootResources
 from app.resources.steering_resource import SteeringResource
-
-cors = CORS(allow_all_origins=True,
-            allow_all_headers=True,
-            allow_all_methods=True)
 
 root = RootResources()
 motor = MotorResource()
@@ -18,7 +13,7 @@ steering = SteeringResource()
 api = application = falcon.API(
     independent_middleware=False,
     middleware=[
-        cors.middleware,
+        CorsConfigurator(),
         RequestValidator()
     ]
 )
