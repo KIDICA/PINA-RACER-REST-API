@@ -7,7 +7,7 @@ logger = logging.getLogger(__name__)
 
 
 class HttpError(falcon.HTTPError):
-    def __init__(self, status:int, description:str, **kwargs):
+    def __init__(self, status, description, **kwargs):
         http_status = "HTTP_{}".format(status)
         if hasattr(status_codes, http_status):
             title = getattr(status_codes, http_status)

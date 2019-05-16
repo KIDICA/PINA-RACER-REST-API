@@ -32,3 +32,24 @@ class JsonSchemas():
             }
         }
     }
+
+    steering_resource_put_request_schema = {
+        "type": "object",
+        "contentMediaType": "",
+        "required": [
+            "value"
+        ],
+        "properties": {
+            "value": {
+                "$id": "#/properties/value",
+                "type": "integer",
+                "title": "The Speed Schema",
+                "default": 400,
+                "examples": [
+                    2000
+                ],
+                "minimum": 0.0,
+                "maximum": 2000.0
+            }
+        }
+    }

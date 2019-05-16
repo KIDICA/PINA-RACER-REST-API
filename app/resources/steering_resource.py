@@ -8,9 +8,8 @@ class SteeringResource(object):
 
     def on_put(self, req, resp):
         payload = req.context["doc"]
-        speed = int(payload['speed'])
-        direction = int(payload['direction'])
+        value = int(payload['value'])
 
-        self.shield_service.set_motor_speed(speed, direction)
+        self.shield_service.set_steering_direction(value)
 
         resp.status = falcon.HTTP_202
