@@ -7,7 +7,7 @@ class MotorResource(object):
     shield_service = ShieldService()
 
     def on_put(self, req, resp):
-        payload = req.context["doc"]
+        payload = req.stream.read()
         speed = int(payload['speed'])
         direction = int(payload['direction'])
 

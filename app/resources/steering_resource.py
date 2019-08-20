@@ -7,7 +7,7 @@ class SteeringResource(object):
     shield_service = ShieldService()
 
     def on_put(self, req, resp):
-        payload = req.context["doc"]
+        payload = req.stream.read()
         value = int(payload['value'])
 
         self.shield_service.set_steering_direction(value)
