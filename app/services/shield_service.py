@@ -44,12 +44,12 @@ class ShieldService:
         while cnt != 0:
             cnt = cnt - 1
             for i in range(50, 140, 1):
-                self.__write_reg(self.__CMD_SERVO1, self.num_map(i, 0, 180, 500, 2500))
+                self.__write_reg(self.__CMD_SERVO1, int(self.num_map(i, 0, 180, 500, 2500)))
                 time.sleep(0.005)
             for i in range(140, 50, -1):
-                self.__write_reg(self.__CMD_SERVO1, self.num_map(i, 0, 180, 500, 2500))
+                self.__write_reg(self.__CMD_SERVO1, int(self.num_map(i, 0, 180, 500, 2500)))
                 time.sleep(0.005)
-        self.__write_reg(self.__CMD_SERVO1, self.num_map(90, 0, 180, 500, 2500))
+        self.__write_reg(self.__CMD_SERVO1, int(self.num_map(90, 0, 180, 500, 2500)))
 
     def num_map(self, value, from_low, from_high, to_low, to_high):
         return (to_high - to_low) * (value - from_low) / (from_high - from_low) + to_low
@@ -62,17 +62,14 @@ class ShieldService:
 
     def __write_reg(self, cmd, value):
         try:
-            self.bus.write_i2c_block_data(self.address, cmd,
-                                          [value >> 8, value & 0xff])
+            self.bus.write_i2c_block_data(self.address, cmd, [value >> 8, value & 0xff])
             time.sleep(0.001)
-            self.bus.write_i2c_block_data(self.address, cmd,
-                                          [value >> 8, value & 0xff])
+            self.bus.write_i2c_block_data(self.address, cmd, [value >> 8, value & 0xff])
             time.sleep(0.001)
-            self.bus.write_i2c_block_data(self.address, cmd,
-                                          [value >> 8, value & 0xff])
+            self.bus.write_i2c_block_data(self.address, cmd, [value >> 8, value & 0xff])
             time.sleep(0.001)
-        except Exception as e:
-            print(Exception, "I2C Error :", e)
+        except Exception, e:
+            print Exception, "I2C Error :", e
 
     def __read_reg(self, cmd):
         for i in range(0, 10, 1):
