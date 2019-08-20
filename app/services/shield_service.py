@@ -21,7 +21,6 @@ class ShieldService:
     __SONIC_MAX_HIGH_BYTE = 50
 
     def __init__(self, addr=0x18):
-        return
         self.address = addr  # default address of mDEV
         self.bus = smbus2.SMBus(1)
         self.bus.open(1)
