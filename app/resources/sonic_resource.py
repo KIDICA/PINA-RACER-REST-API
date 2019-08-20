@@ -15,5 +15,5 @@ class SonicResource(object):
             "echoTime": echo_time
         }
 
-        resp.body = json.dumps(doc, ensure_ascii=False)
+        resp.body = json.dumps("Test", ensure_ascii=False)
         resp.status = falcon.HTTP_200
