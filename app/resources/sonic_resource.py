@@ -11,4 +11,4 @@ class SonicResource(object):
         echo_time = self.shield_service.get_sonic_echo_time()
 
         resp.body = '{"message": "Hello world!"}'
-        resp.status = falcon.HTTP_202
+        resp.status = falcon.HTTP_200
