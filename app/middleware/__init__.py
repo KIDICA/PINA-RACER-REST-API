@@ -1,2 +1,1 @@
 from app.middleware.cors_configurator import CorsConfigurator
-from app.middleware.request_validator import RequestValidator

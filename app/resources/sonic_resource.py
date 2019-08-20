@@ -1,3 +1,4 @@
+import json
 import falcon
 
 from app.services.shield_service import ShieldService
@@ -10,7 +11,10 @@ class SonicResource(object):
         sonic = self.shield_service.get_sonic()
         echo_time = self.shield_service.get_sonic_echo_time()
 
-        print("peter")
+        doc = {
+            "sonic": sonic,
+            "echoTime": echo_time
+        }
 
-        resp.body = '{"message": "Hello world!"}'
+        resp.body = json.dumps(doc, ensure_ascii=False)
         resp.status = falcon.HTTP_200

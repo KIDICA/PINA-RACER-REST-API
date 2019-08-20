@@ -1,6 +1,6 @@
 import falcon
 
-from app.middleware import RequestValidator, CorsConfigurator
+from app.middleware import CorsConfigurator
 from app.models.http_error import error_handler
 from app.resources.motor_resource import MotorResource
 from app.resources.root import RootResources
@@ -15,8 +15,7 @@ sonic = SonicResource()
 api = application = falcon.API(
     independent_middleware=False,
     middleware=[
-        CorsConfigurator(),
-        RequestValidator()
+        CorsConfigurator()
     ]
 )
 
