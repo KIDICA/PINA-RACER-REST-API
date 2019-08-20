@@ -10,10 +10,5 @@ class SonicResource(object):
         sonic = self.shield_service.get_sonic()
         echo_time = self.shield_service.get_sonic_echo_time()
 
-        doc = {
-            "sonic": sonic,
-            "echoTime": echo_time
-        }
-
-        resp.body = json.dumps("Test", ensure_ascii=False)
-        resp.status = falcon.HTTP_200
+        resp.body = '{"message": "Hello world!"}'
+        resp.status = falcon.HTTP_202
