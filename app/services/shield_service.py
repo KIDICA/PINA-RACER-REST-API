@@ -40,16 +40,7 @@ class ShieldService:
         self.__write_reg(self.__CMD_PWM2, speed)
 
     def set_steering_direction(self, value):
-        cnt = 3
-        while cnt != 0:
-            cnt = cnt - 1
-            for i in range(50, 140, 1):
-                self.__write_reg(self.__CMD_SERVO1, int(self.num_map(i, 0, 180, 500, 2500)))
-                time.sleep(0.005)
-            for i in range(140, 50, -1):
-                self.__write_reg(self.__CMD_SERVO1, int(self.num_map(i, 0, 180, 500, 2500)))
-                time.sleep(0.005)
-        self.__write_reg(self.__CMD_SERVO1, int(self.num_map(90, 0, 180, 500, 2500)))
+        self.__write_reg(self.__CMD_SERVO1, int(self.num_map(value, 0, 180, 500, 2500)))
 
     def num_map(self, value, from_low, from_high, to_low, to_high):
         return (to_high - to_low) * (value - from_low) / (from_high - from_low) + to_low
