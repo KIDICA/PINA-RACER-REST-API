@@ -68,7 +68,7 @@ class ShieldService:
             time.sleep(0.001)
             self.bus.write_i2c_block_data(self.address, cmd, [value >> 8, value & 0xff])
             time.sleep(0.001)
-        except Exception, e:
+        except Exception as e:
             print Exception, "I2C Error :", e
 
     def __read_reg(self, cmd):
