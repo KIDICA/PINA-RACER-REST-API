@@ -8,6 +8,7 @@ class MotorResource(object):
 
     def on_put(self, req, resp):
         payload = req.stream.read()
+        print(payload)
         speed = int(payload['speed'])
         direction = int(payload['direction'])
 
