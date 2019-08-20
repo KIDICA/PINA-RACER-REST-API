@@ -40,7 +40,16 @@ class ShieldService:
         self.__write_reg(self.__CMD_PWM2, speed)
 
     def set_steering_direction(self, value):
-        self.__write_reg(self.__CMD_SERVO1, value)
+        cnt = 3
+        while cnt != 0:
+            cnt = cnt - 1
+            for i in range(50, 140, 1):
+                mdev.writeReg(mdev.CMD_SERVO1, numMap(i, 0, 180, 500, 2500))
+                time.sleep(0.005)
+            for i in range(140, 50, -1):
+                mdev.writeReg(mdev.CMD_SERVO1, numMap(i, 0, 180, 500, 2500))
+                time.sleep(0.005)
+        mdev.writeReg(mdev.CMD_SERVO1, numMap(90, 0, 180, 500, 2500))
 
     def __set_shield_i2c_address(self, addr):  # addr: 7bit I2C Device Address
         if (addr < 0x03) or (addr > 0x77):
