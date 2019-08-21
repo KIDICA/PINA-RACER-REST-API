@@ -1,4 +1,3 @@
-import json
 import falcon
 
 from app.services.shield_service import ShieldService
@@ -8,8 +7,10 @@ class SteeringResource(object):
     shield_service = ShieldService()
 
     def on_put(self, req, resp):
-        payload = json.loads(req.stream.read().decode("utf-8"))
-        value = int(payload['value'])
+        value = int(req.get_param("value", required=True))
+        if value < 40 or value > 140:
+            resp.status = falcon.HTTP_400
+            return
 
         self.shield_service.set_steering_direction(value)
 

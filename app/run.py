@@ -19,6 +19,8 @@ api = application = falcon.API(
     ]
 )
 
+api.req_options.auto_parse_form_urlencoded = True
+
 api.add_error_handler(Exception, error_handler)
 
 api.add_route('/', root)
