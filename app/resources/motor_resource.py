@@ -9,7 +9,7 @@ class MotorResource(object):
     def on_put(self, req, resp):
         speed = int(req.get_param('speed', required=True))
         direction = int(req.get_param('direction', required=True))
-        if speed < 300 or speed > 1000:
+        if speed < 0 or speed > 1000:
             resp.status = falcon.HTTP_400
             return
 
