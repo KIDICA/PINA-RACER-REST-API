@@ -14,4 +14,4 @@ class SteeringResource(object):
 
         self.shield_service.set_steering_direction(value)
 
-        resp.status = falcon.HTTP_202
+        resp.status = falcon.HTTP_200
