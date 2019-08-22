@@ -8,6 +8,7 @@ class SteeringResource(object):
 
     def on_put(self, req, resp):
         value = int(req.get_param("value", required=True))
+        print(value)
         if value < 40 or value > 140:
             resp.status = falcon.HTTP_400
             return
