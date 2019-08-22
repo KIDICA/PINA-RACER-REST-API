@@ -18,3 +18,14 @@ class SonicResource(object):
 
         resp.body = json.dumps(doc, ensure_ascii=False)
         resp.status = falcon.HTTP_200
+
+    def on_put(self, req, resp):
+        value = int(req.get_param("value", required=True))
+        print(value)
+        if value < 0 or value > 360:
+            resp.status = falcon.HTTP_400
+            return
+
+        self.shield_service.set_test_sonic_direction(value)
+
+        resp.status = falcon.HTTP_200
