@@ -1,5 +1,7 @@
 import falcon
 
+from app.services.shield_service import ShieldService
+
 from app.middleware import CorsConfigurator
 from app.models.http_error import error_handler
 from app.resources.motor_resource import MotorResource
@@ -8,6 +10,8 @@ from app.resources.steering_resource import SteeringResource
 from app.resources.sonic_resource import SonicResource
 from app.resources.buzzer_resource import BuzzerResource
 from app.resources.light_resource import LightResource
+
+shield = ShieldService()
 
 root = RootResources()
 motor = MotorResource()
@@ -33,3 +37,5 @@ api.add_route('/steering', steering)
 api.add_route('/sonic', sonic)
 api.add_route('/buzzer', buzzer)
 api.add_route('/light', light)
+
+shield.set_rgb_light(0, 0, 1)
