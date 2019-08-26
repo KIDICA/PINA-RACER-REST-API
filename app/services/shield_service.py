@@ -48,6 +48,11 @@ class ShieldService:
     def set_buzzer_volume(self, value):
         self.__write_reg(self.__CMD_BUZZER, value)
 
+    def set_rgb_light(self, red, green, blue):
+        self.__write_reg(self.__CMD_IO1, red)
+        self.__write_reg(self.__CMD_IO2, green)
+        self.__write_reg(self.__CMD_IO3, blue)
+
     def num_map(self, value, from_low, from_high, to_low, to_high):
         return (to_high - to_low) * (value - from_low) / (from_high - from_low) + to_low
 
