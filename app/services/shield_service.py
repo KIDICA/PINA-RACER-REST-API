@@ -43,7 +43,10 @@ class ShieldService:
         self.__write_reg(self.__CMD_SERVO1, int(self.num_map(value, 0, 180, 500, 2500)))
 
     def set_test_sonic_direction(self, value):
-        self.__write_reg(self.__CMD_SERVO2, int(self.num_map(value, 0, 180, 500, 2500)))
+        self.__write_reg(self.__CMD_SERVO2, int(self.num_map(value, 0, 180, 500, 5000)))
+
+    def set_buzzer_volume(self, value):
+        self.__write_reg(self.__CMD_BUZZER, value)
 
     def num_map(self, value, from_low, from_high, to_low, to_high):
         return (to_high - to_low) * (value - from_low) / (from_high - from_low) + to_low

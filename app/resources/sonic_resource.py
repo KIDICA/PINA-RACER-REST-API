@@ -21,7 +21,6 @@ class SonicResource(object):
 
     def on_put(self, req, resp):
         value = int(req.get_param("value", required=True))
-        print(value)
         if value < 0 or value > 360:
             resp.status = falcon.HTTP_400
             return
