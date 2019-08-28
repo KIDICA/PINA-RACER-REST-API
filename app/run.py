@@ -1,5 +1,10 @@
 import falcon
 
+import asyncio
+import datetime
+import random
+import websockets
+
 from app.services.shield_service import ShieldService
 
 from app.middleware import CorsConfigurator
@@ -38,4 +43,19 @@ api.add_route('/sonic', sonic)
 api.add_route('/buzzer', buzzer)
 api.add_route('/light', light)
 
+
+async def time(websocket, path):
+    while True:
+        now = datetime.datetime.utcnow().isoformat() + "Z"
+        await websocket.send(now)
+        await asyncio.sleep(random.random() * 3)
+
+start_server = websockets.serve(time, "127.0.0.1", 5678)
+
+asyncio.get_event_loop().run_until_complete(start_server)
+asyncio.get_event_loop().run_forever()
+
+# Ready
 shield.set_rgb_light(0, 0, 1)
+
+
